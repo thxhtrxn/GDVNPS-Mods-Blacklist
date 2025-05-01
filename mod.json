@@ -1,0 +1,20 @@
+{
+	"geode": "4.3.1",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
+	},
+	"id": "thxhtrxn.gdvnps-mods-blacklist",
+	"name": "GDVNPS Geode Mods Blacklist",
+	"version": "v1.0.0",
+	"developers": [ "thxhtrxn", "GDVNPS Community" ],
+	"tags": [ "offline", "universal" ],
+	"description": "Mods Blacklist for GDVNPS(riel not fake)",
+	"links": {
+		"source": "https://github.com/thxhtrxn/GDVNPS-Mods-Blacklist",
+		"homepage": "https://gdvnps.site/",
+		"community": "https://discord.gg/SmBs7xGSWM"
+	}
+}
