@@ -7,8 +7,9 @@ using namespace geode::prelude;
 
 bool shouldShowPopup = false;
 
-// you know what? fuck me
+// You know what? Fuck me.
 $on_mod(Loaded) {
+    // More will coming soon...
     std::unordered_set<std::string> modList = {
         "beat.shipcopter",
         "raydeeux.frickglow",
@@ -32,7 +33,7 @@ class $modify(MyMenuLayer, MenuLayer) {
 
         if(shouldShowPopup) {
             this->runAction(CCSequence::createWithTwoActions(
-                CCDelayTime::create(0.5f),
+                CCDelayTime::create(0.05f),
                 CCCallFunc::create(this, callfunc_selector(MyMenuLayer::showBlacklistPopup))
             ));
         }
@@ -40,15 +41,29 @@ class $modify(MyMenuLayer, MenuLayer) {
     }
 
     void showBlacklistPopup() {
-        geode::createQuickPopup(
+        auto restartPopup = geode::createQuickPopup(
             "Restart Required",
-            "We've disabled one or more blacklisted mods.\nPlease restart to apply changes.",
-            "No", "Yes",
-            [](auto, bool yes) {
-                if (yes) {
+            "We've disabled one or more blacklisted mods.\nPlease restart to apply changes.\n<cr>(AUTO RESTART IN 5 SECONDS)</c>",
+            "Restart Now", nullptr,
+            [](bool restart_now, auto) {
+                if (restart_now) {
                     game::restart();
                 }
             },
-            false)->show();
+            false);
+        
+        restartPopup->show();
+
+        this->runAction(
+            CCSequence::create(
+                CCDelayTime::create(5.0f),
+                CCCallFunc::create(this, callfunc_selector(MyMenuLayer::gameRestart)),
+                nullptr
+            )
+        );
+    }
+
+    void gameRestart() {
+        game::restart();
     }
 };
