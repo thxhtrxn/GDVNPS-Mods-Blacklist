@@ -16,6 +16,13 @@ $on_mod(Loaded) {
         "ziegenhainy.fungal_shift",
         "covernts.custom_wraith_codes",
         "capeling.gamemode-switcher",
+        "hiimjustin000.fake_rate",
+        "bitz.moregames",
+        "raydeeux.antilobotomy",
+        "alphalaneous.asyncweb",
+        "raydeeux_colon.towersecretending",
+        "mariomastr.customisable-speed-portals",
+        "camila314.pathfinder"
     };
 
     for (auto const& mod : Loader::get()->getAllMods()) {
