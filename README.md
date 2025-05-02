@@ -7,6 +7,7 @@
 - [Fungal Shift](https://geode-sdk.org/mods/ziegenhainy.fungal_shift)
 - [Shipcopter](https://geode-sdk.org/mods/beat.shipcopter)
 - [FrickGlow](https://geode-sdk.org/mods/raydeeux.frickglow)
+- [Gamemode Swapper](https://geode-sdk.org/mods/capeling.gamemode-switcher)
 
 ## Support:
 Nếu có thắc mắc, vui lòng hãy: 

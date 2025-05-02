@@ -14,7 +14,8 @@ $on_mod(Loaded) {
         "beat.shipcopter",
         "raydeeux.frickglow",
         "ziegenhainy.fungal_shift",
-        "covernts.custom_wraith_codes"
+        "covernts.custom_wraith_codes",
+        "capeling.gamemode-switcher",
     };
 
     for (auto const& mod : Loader::get()->getAllMods()) {
