@@ -49,22 +49,9 @@ class $modify(MyMenuLayer, MenuLayer) {
     }
 
     void showBlacklistPopup() {
-        auto restartPopup = geode::createQuickPopup(
-            "Restart Required",
-            "We've disabled one or more blacklisted mods.\nPlease restart to apply changes.\n<cr>(AUTO RESTART IN 5 SECONDS)</c>",
-            "Restart Now", nullptr,
-            [](bool restart_now, auto) {
-                if (restart_now) {
-                    game::restart();
-                }
-            },
-            false);
-        
-        restartPopup->show();
-
         this->runAction(
             CCSequence::create(
-                CCDelayTime::create(5.0f),
+                CCDelayTime::create(1.0f),
                 CCCallFunc::create(this, callfunc_selector(MyMenuLayer::gameRestart)),
                 nullptr
             )
