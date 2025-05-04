@@ -1,0 +1,50 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 80
+
+BreakBeforeBraces: Attach
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLoopsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: Empty
+
+PointerAlignment: Left
+SpaceBeforeParens: Never
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+SpacesInAngles: false
+SpaceAfterCStyleCast: true
+
+IncludeBlocks: Preserve
+IncludeCategories:
+  - Regex:           '^<.*\.h>'
+    Priority:        1
+  - Regex:           '^".*\.hpp"'
+    Priority:        2
+  - Regex:           '^".*\.cpp"'
+    Priority:        3
+SortIncludes: false
+
+NamespaceIndentation: None
+SpaceAfterTemplateKeyword: true
+
+CommentPragmas: '^ IWYU pragma:'
+
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakBeforeMultilineStrings: false
+BreakConstructorInitializers: BeforeColon
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+AllowShortBlocksOnASingleLine: false
+BreakBeforeBinaryOperators: None
+BreakAfterJavaFieldAnnotations: false
+
+DerivePointerAlignment: false
+AlignAfterOpenBracket: Align
+AlignOperands: true
+AlignConsecutiveDeclarations: true
+AlignConsecutiveAssignments: true
+AlignTrailingComments: true
+
+MacroBlockBegin: "^GEODE_[A-Z0-9_]+"
+MacroBlockEnd: "^GEODE_END"

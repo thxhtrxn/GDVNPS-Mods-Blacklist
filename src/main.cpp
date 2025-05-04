@@ -1,3 +1,4 @@
+#include "BlacklistedMods.hpp"
 #include <Geode/Geode.hpp>
 #include <Geode/loader/Loader.hpp>
 #include <Geode/modify/MenuLayer.hpp>
@@ -5,22 +6,7 @@
 
 using namespace geode::prelude;
 
-bool shouldForceCheckMods = false;
-
-const std::unordered_set<std::string> blacklistedMods = {
-    "beat.shipcopter",
-    "raydeeux.frickglow",
-    "ziegenhainy.fungal_shift",
-    "covernts.custom_wraith_codes",
-    "capeling.gamemode-switcher",
-    "hiimjustin000.fake_rate",
-    "bitz.moregames",
-    "raydeeux.antilobotomy",
-    "alphalaneous.asyncweb",
-    "raydeeux_colon.towersecretending",
-    "mariomastr.customisable-speed-portals",
-    "camila314.pathfinder"
-};
+constexpr const char* KEY_FORCE_CHECK = "forceCheckMods";
 
 $on_mod(Loaded) {
     log::info("Running blacklist check...");
@@ -35,7 +21,7 @@ $on_mod(Loaded) {
     }
 
     if (hasDisabled) {
-        shouldForceCheckMods = true;
+        Mod::get()->setSavedValue(KEY_FORCE_CHECK, true);
     }
 }
 
@@ -43,15 +29,15 @@ class $modify(MyMenuLayer, MenuLayer) {
     bool init() {
         if (!MenuLayer::init()) return false;
 
-        if (shouldForceCheckMods) {
+        if (Mod::get()->getSavedValue<bool>(KEY_FORCE_CHECK, false)) {
+            Mod::get()->setSavedValue(KEY_FORCE_CHECK, false);
             this->runAction(
                 CCSequence::createWithTwoActions(
-                    CCDelayTime::create(0.5f),
+                    CCDelayTime::create(0.3f),
                     CCCallFunc::create(this, callfunc_selector(MyMenuLayer::forceDisableBlacklistMods))
                 )
             );
         }
-
         return true;
     }
 
@@ -62,7 +48,7 @@ class $modify(MyMenuLayer, MenuLayer) {
         for (auto const& mod : Loader::get()->getAllMods()) {
             if (blacklistedMods.count(mod->getID()) && mod->isEnabled()) {
                 mod->disable();
-                log::warn("Mod {} was re-enabled — force-disabling again.", mod->getID());
+                log::warn("Mod {} was re-enabled - force-disabling again.", mod->getID());
                 foundEnabled = true;
             }
         }
@@ -70,7 +56,7 @@ class $modify(MyMenuLayer, MenuLayer) {
         if (foundEnabled) {
             this->runAction(
                 CCSequence::createWithTwoActions(
-                    CCDelayTime::create(0.1f),
+                    CCDelayTime::create(0.05f),
                     CCCallFunc::create(this, callfunc_selector(MyMenuLayer::gameRestart))
                 )
             );
