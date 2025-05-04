@@ -40,8 +40,11 @@ jobs:
           export-pdb: true
           combine: true
           target: ${{ matrix.config.target }}
+<<<<<<< HEAD
           ccache-variant: ccache
           build-config: ${{ matrix.config.build-type || 'Release' }}
+=======
+>>>>>>> d1671242a242c08cdad9531854930ff5b568923f
 
   package:
     name: Package builds
